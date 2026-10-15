@@ -43,7 +43,7 @@ Im Konfigurationsordner liegen nach dem ersten Start:
 ## Zugriff
 
 - Port **8099** (änderbar unter „Netzwerk“): REST-API `/api/...`, Swagger-UI `/swagger-ui.html`,
-  MCP `/mcp/sse`. Jede Anfrage braucht `Authorization: Bearer <api_token>`; nur
+  MCP `/mcp`. Jede Anfrage braucht `Authorization: Bearer <api_token>`; nur
   `/actuator/health` und die Swagger-Doku sind offen.
 - Den Port **nicht** ungeschützt ins Internet freigeben.
 
@@ -53,12 +53,12 @@ Die App bietet MCP-Tools (Lebensmittel suchen, Gegessenes eintragen, Tagesbilanz
 Konversations-Agenten in Home Assistant:
 
 1. Integration **Anthropic** (o. ä.) mit eigenem API-Schlüssel einrichten, Modell z. B. Claude Haiku.
-2. Integration **Model Context Protocol** hinzufügen, SSE-URL:
-   `http://<hostname>:8081/mcp/sse` – den Hostnamen zeigt die App-Info (z. B. `dd4fef93-naehrwert`).
+2. Integration **Model Context Protocol** hinzufügen, URL:
+   `http://<hostname>:8081/mcp` – den Hostnamen zeigt die App-Info (z. B. `dd4fef93-naehrwert`).
    Dieser interne Port braucht keinen Token und ist von außen nicht erreichbar.
 3. Im Sprachassistenten den Agenten auswählen und die MCP-Tools für ihn freigeben.
 
-Von außen (Port 8099) ist MCP unter `/mcp/sse` nur mit `Authorization: Bearer <api_token>` erreichbar.
+Von außen (Port 8099) ist MCP unter `/mcp` nur mit `Authorization: Bearer <api_token>` erreichbar.
 
 ## Sicherung
 
