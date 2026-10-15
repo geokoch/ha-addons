@@ -49,7 +49,11 @@ Im Konfigurationsordner liegen nach dem ersten Start:
 
 ## PDF-Reports
 
-Im Layout der Rezeptsammlung, über Port 8099 mit Token:
+Am einfachsten über die Seitenleiste **„Nährwert“** (Ingress): Übersicht mit Links auf Tagesbilanz,
+Wochenbilanz, Rezeptsammlung und alle Rezepte – ohne Token, die Anmeldung macht Home Assistant.
+„Herunterladen“ speichert das PDF, falls die App es nicht anzeigt.
+
+Direkt über Port 8099 mit Token:
 
 - `/api/reports/day/<JJJJ-MM-TT>.pdf` – Tagesbilanz, danach jede Mahlzeit auf eigener Seite
 - `/api/reports/recipe/<Rezept-ID>.pdf` – Rezept
