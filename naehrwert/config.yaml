@@ -1,0 +1,35 @@
+name: Nährwert-Service
+version: "0.1.0"
+slug: naehrwert
+description: Ernährungstagebuch, Rezepte und Tagesbilanzen auf Basis BLS 4.0 – mit Sensoren und Schnelleingabe in Home Assistant
+url: https://github.com/geokoch/ha-addons/tree/main/naehrwert
+arch:
+  - amd64
+  - aarch64
+# Privates Image: in Home Assistant einmalig eine Registry für ghcr.io hinterlegen (siehe DOCS.md)
+image: ghcr.io/geokoch/naehrwert
+init: false
+startup: application
+boot: auto
+services:
+  - mqtt:need
+map:
+  - app_config:rw
+# API und /mcp direkt über einen Port – Ingress würde externe Clients (MCP) aussperren
+ports:
+  8080/tcp: 8099
+ports_description:
+  8080/tcp: REST-API, Swagger-UI und MCP (Bearer-Token)
+watchdog: http://[HOST]:[PORT:8080]/actuator/health
+# SQLite konsistent sichern: Add-on wird für das Backup kurz angehalten
+backup: cold
+backup_exclude:
+  - "backup/*"
+options:
+  api_token: ""
+  log_level: info
+  heap_mb: 160
+schema:
+  api_token: password
+  log_level: list(trace|debug|info|warn|error)
+  heap_mb: int(64,1024)

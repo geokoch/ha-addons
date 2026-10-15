@@ -1,0 +1,59 @@
+# Nährwert-Service
+
+Ernährungstagebuch, Rezeptsammlung und Tagesbilanzen. Alle Nährwerte kommen aus dem
+Bundeslebensmittelschlüssel (BLS 4.0) oder aus manuell erfassten Lebensmitteln mit Quelle.
+Gerechnet wird ausschließlich im Dienst. Gesundheitsdaten bleiben in Home Assistant; der Dienst
+schickt nichts in die Cloud.
+
+## Einmalig: Zugriff auf das private Image
+
+Das Image liegt privat auf GitHub (`ghcr.io/geokoch/naehrwert`):
+
+1. Auf GitHub einen **Personal Access Token (classic)** mit nur dem Recht `read:packages` erzeugen.
+2. In Home Assistant **Einstellungen → Apps → App-Store → ⋮ → Registries → Registry hinzufügen**:
+   - Registry: `ghcr.io`
+   - Benutzername: `geokoch`
+   - Passwort: der Token
+
+## Installation
+
+1. App-Store → ⋮ → **Repositories** → `https://github.com/geokoch/ha-addons` hinzufügen.
+2. **Nährwert-Service** installieren. Das Mosquitto-Add-on muss laufen.
+3. In der Konfiguration einen **API-Token** setzen (mindestens 32 Zeichen).
+4. Die BLS-Datei `BLS_4_0_2025_DE.zip` von <https://www.blsdb.de> („Download BLS-Daten“) in den
+   Konfigurationsordner der App legen: `/addon_configs/<id>_naehrwert/` (Samba oder Studio Code
+   Server). Sie wird beim nächsten Start einmalig importiert, das dauert etwa 10 s.
+5. Starten. Im Protokoll erscheint „MQTT verbunden“. Unter Einstellungen → Geräte erscheint je
+   Person ein Gerät „Ernährung &lt;Name&gt;“.
+
+## Konfiguration
+
+| Option | Bedeutung |
+|---|---|
+| `api_token` | Bearer-Token für REST-API und MCP (Pflicht, ≥ 32 Zeichen) |
+| `log_level` | `trace` … `error`, Standard `info` |
+| `heap_mb` | Maximaler Java-Heap, Standard 160 MB |
+
+Im Konfigurationsordner liegen nach dem ersten Start:
+
+- `seed/persons.yaml`: Personen und Tagesziele. Neue Personen werden beim Start angelegt,
+  bestehende nicht überschrieben (danach Ziele per API ändern).
+- `seed/recipes.yaml`: Rezepte. Platzhalter werden ergänzt, sobald Zutaten eingetragen sind.
+
+## Zugriff
+
+- Port **8099** (änderbar unter „Netzwerk“): REST-API `/api/...`, Swagger-UI `/swagger-ui.html`,
+  später MCP `/mcp`. Jede Anfrage braucht `Authorization: Bearer <api_token>`; nur
+  `/actuator/health` und die Swagger-Doku sind offen.
+- Den Port **nicht** ungeschützt ins Internet freigeben.
+
+## Sicherung
+
+Die Datenbank liegt unter `/data` der App und ist in den Home-Assistant-Backups enthalten. Für ein
+konsistentes Backup hält Home Assistant die App kurz an (`backup: cold`). Zusätzlich erzeugt
+`POST /api/admin/backup` jederzeit eine Kopie per SQLite `VACUUM INTO` (die neuesten 14 werden
+behalten). Diese Kopien sind vom HA-Backup ausgenommen.
+
+## Daten
+
+Nährwerte: Max Rubner-Institut (2025): Bundeslebensmittelschlüssel (BLS), Version 4.0, CC BY 4.0.

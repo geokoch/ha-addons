@@ -1,0 +1,14 @@
+configuration:
+  api_token:
+    name: API-Token
+    description: >-
+      Geheimer Bearer-Token für REST-API und MCP, mindestens 32 Zeichen
+      (z. B. mit „openssl rand -hex 32“ erzeugen).
+  log_level:
+    name: Log-Level
+    description: Ausführlichkeit der Protokollausgabe des Dienstes.
+  heap_mb:
+    name: Java-Heap (MB)
+    description: Maximaler Java-Heap. 160 MB genügen für zwei Personen.
+network:
+  8080/tcp: REST-API, Swagger-UI und MCP
