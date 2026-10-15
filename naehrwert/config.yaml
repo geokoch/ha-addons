@@ -1,5 +1,5 @@
 name: Nährwert-Service
-version: "0.1.2"
+version: "0.2.0"
 slug: naehrwert
 description: Ernährungstagebuch, Rezepte und Tagesbilanzen auf Basis BLS 4.0 – mit Sensoren und Schnelleingabe in Home Assistant
 url: https://github.com/geokoch/ha-addons/tree/main/naehrwert
@@ -15,7 +15,8 @@ services:
   - mqtt:need
 map:
   - app_config:rw
-# API und /mcp direkt über einen Port – Ingress würde externe Clients (MCP) aussperren
+# API und /mcp (mit Token) über einen Port – Ingress würde externe Clients aussperren.
+# Port 8081 (MCP ohne Token für Home Assistant) ist absichtlich NICHT gemappt.
 ports:
   8080/tcp: 8099
 ports_description:
