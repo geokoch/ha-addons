@@ -47,6 +47,17 @@ Im Konfigurationsordner liegen nach dem ersten Start:
   `/actuator/health` und die Swagger-Doku sind offen.
 - Den Port **nicht** ungeschützt ins Internet freigeben.
 
+## PDF-Reports
+
+Im Layout der Rezeptsammlung, über Port 8099 mit Token:
+
+- `/api/reports/day/<JJJJ-MM-TT>.pdf` – Tagesbilanz, danach jede Mahlzeit auf eigener Seite
+- `/api/reports/recipe/<Rezept-ID>.pdf` – Rezept
+- `/api/reports/collection.pdf` – Rezeptsammlung mit Nährstoffziel
+- `/api/reports/week/<JJJJ-Www>.pdf` – Wochenbilanz, z. B. `2026-W42`
+
+Bei mehreren Personen `?personId=<id>` anhängen.
+
 ## Chat mit Assist (MCP)
 
 Die App bietet MCP-Tools (Lebensmittel suchen, Gegessenes eintragen, Tagesbilanz …) für einen
