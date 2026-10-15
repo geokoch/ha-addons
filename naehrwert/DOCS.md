@@ -60,6 +60,14 @@ Konversations-Agenten in Home Assistant:
 
 Von außen (Port 8099) ist MCP unter `/mcp` nur mit `Authorization: Bearer <api_token>` erreichbar.
 
+## Körperwerte (Withings)
+
+Gewicht, Blutdruck und Puls werden nicht in der App erfasst, sondern von der Waage in Home Assistant
+übernommen. Dafür eine Automation anlegen, die bei neuer Messung auf
+`naehrwert/<person>/cmd` den Befehl `{"action":"log_body", "measuredAt": …, "weightKg": …,
+"bpSys": …, "bpDia": …, "pulse": …}` sendet. Die Werte fließen in die Wochenbilanz ein
+(Gewichtstrend als Wochenmittel gegen die Vorwoche).
+
 ## Sicherung
 
 Die Datenbank liegt unter `/data` der App und ist in den Home-Assistant-Backups enthalten. Für ein
