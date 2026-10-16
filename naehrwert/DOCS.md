@@ -57,6 +57,8 @@ Im Konfigurationsordner liegen nach dem ersten Start:
 - **Rezepte:** ansehen, anlegen, bearbeiten, als Favorit markieren, als PDF
 - **Woche:** Heatmap der Tage, Mittelwerte, Tage im Ziel, Körperwerte
 - **Berichte:** alle PDFs zum Öffnen oder Herunterladen
+- **Wandpanel:** Ansicht fürs Küchen-Tablet (große Zahlen, echtes Schwarz, Favoriten mit einem
+  Tipp) – unter Berichte → „Wandpanel-Modus auf diesem Gerät“ einschalten
 
 ## PDF-Reports
 
