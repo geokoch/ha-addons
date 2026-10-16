@@ -64,6 +64,8 @@ Im Konfigurationsordner liegen nach dem ersten Start:
 - **Rezepte:** ansehen, anlegen, bearbeiten, als Favorit markieren, als PDF
 - **Woche:** Heatmap der Tage, Mittelwerte, Tage im Ziel, Körperwerte
 - **Berichte:** alle PDFs zum Öffnen oder Herunterladen
+- **Assist-Knopf** (Sprechblase oben rechts, im Wandpanel „Assist fragen“): öffnet den Assist-Dialog
+  von Home Assistant mit dem Assistenten „Ernährung …“ – nur in der Seitenleiste/im Panel
 - **Wandpanel:** Ansicht fürs Küchen-Tablet (große Zahlen, echtes Schwarz, Favoriten mit einem
   Tipp) – unter Berichte → „Wandpanel-Modus auf diesem Gerät“ einschalten
 
