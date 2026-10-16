@@ -47,11 +47,21 @@ Im Konfigurationsordner liegen nach dem ersten Start:
   `/actuator/health` und die Swagger-Doku sind offen.
 - Den Port **nicht** ungeschützt ins Internet freigeben.
 
+## Oberfläche (Seitenleiste „Nährwert“)
+
+Über Ingress, ohne Token – die Anmeldung macht Home Assistant:
+
+- **Heute:** kcal-Rest, Nährstoffe gegen Ziel, Salz-Ampel, nächste Mahlzeit, Mahlzeiten; frühere
+  Tage korrigieren (Menge ändern, löschen)
+- **Erfassen:** Suche über Lebensmittel und Rezepte, Favoriten, zuletzt gegessen; Rückgängig
+- **Rezepte:** ansehen, anlegen, bearbeiten, als Favorit markieren, als PDF
+- **Woche:** Heatmap der Tage, Mittelwerte, Tage im Ziel, Körperwerte
+- **Berichte:** alle PDFs zum Öffnen oder Herunterladen
+
 ## PDF-Reports
 
-Am einfachsten über die Seitenleiste **„Nährwert“** (Ingress): Übersicht mit Links auf Tagesbilanz,
-Wochenbilanz, Rezeptsammlung und alle Rezepte – ohne Token, die Anmeldung macht Home Assistant.
-„Herunterladen“ speichert das PDF, falls die App es nicht anzeigt.
+Am einfachsten über **Berichte** in der Seitenleiste „Nährwert“. „Herunterladen“ speichert das
+PDF, falls die App es nicht anzeigt.
 
 Direkt über Port 8099 mit Token:
 
