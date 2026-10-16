@@ -54,6 +54,11 @@ Im Konfigurationsordner liegen nach dem ersten Start:
 - **Heute:** kcal-Rest, Nährstoffe gegen Ziel, Salz-Ampel, nächste Mahlzeit, Mahlzeiten; frühere
   Tage korrigieren (Menge ändern, löschen)
 - **Erfassen:** Suche über Lebensmittel und Rezepte, Favoriten, zuletzt gegessen; Rückgängig
+- **Plan:** abends den nächsten Tag zusammenstellen (gleiche Suche wie Erfassen) und vorab gegen die
+  Ziele prüfen: kcal, Nährstoffe, Salz-Ampel. „Plan von heute übernehmen“ für ähnliche Tage. Auf
+  **Heute** stehen die geplanten Posten unter „Noch geplant“; „Gegessen“ trägt sie mit der
+  aktuellen Uhrzeit ein (Menge vorher änderbar). Geplantes zählt nie in Tageswerte, Woche oder
+  Berichte, solange es nicht gegessen ist
 - **Rezepte:** ansehen, anlegen, bearbeiten, als Favorit markieren, als PDF
 - **Woche:** Heatmap der Tage, Mittelwerte, Tage im Ziel, Körperwerte
 - **Berichte:** alle PDFs zum Öffnen oder Herunterladen
@@ -86,6 +91,13 @@ Konversations-Agenten in Home Assistant:
 3. Im Sprachassistenten den Agenten auswählen und die MCP-Tools für ihn freigeben.
 
 Von außen (Port 8099) ist MCP unter `/mcp` nur mit `Authorization: Bearer <api_token>` erreichbar.
+
+Für den Essensplan gibt es eigene Tools: Plan ansehen, Posten planen (Standard morgen), geplanten
+Posten als gegessen buchen und aus dem Plan entfernen, z. B. „Plan mir für morgen 300 g
+Linsensuppe zum Mittagessen“.
+
+Der Sensor **Geplant** (`sensor.<person>_geplant`) zeigt die nächste noch geplante Mahlzeit von
+heute, z. B. „Mittagessen: Linsensuppe 300 g“ – für Wandpanel oder Erinnerungen.
 
 ## Körperwerte (Withings)
 
