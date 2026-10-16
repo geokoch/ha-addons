@@ -46,6 +46,8 @@ Im Konfigurationsordner liegen nach dem ersten Start:
   MCP `/mcp`. Jede Anfrage braucht `Authorization: Bearer <api_token>`; nur
   `/actuator/health` und die Swagger-Doku sind offen.
 - Den Port **nicht** ungeschützt ins Internet freigeben.
+- Die Seitenleiste „Nährwert“ steht allen angemeldeten HA-Benutzern offen, nicht nur Admins
+  (ab 0.8.2) – nötig für Konten wie das des Wandpanels.
 
 ## Oberfläche (Seitenleiste „Nährwert“)
 

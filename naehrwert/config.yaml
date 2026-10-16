@@ -1,5 +1,5 @@
 name: Nährwert-Service
-version: "0.8.1"
+version: "0.8.2"
 slug: naehrwert
 description: Ernährungstagebuch, Rezepte und Tagesbilanzen auf Basis BLS 4.0 – mit Sensoren und Schnelleingabe in Home Assistant
 url: https://github.com/geokoch/ha-addons/tree/main/naehrwert
@@ -22,6 +22,8 @@ ingress: true
 ingress_port: 8082
 panel_icon: mdi:food-apple-outline
 panel_title: Nährwert
+# Auch Nicht-Admins (Natalie, Wandpanel-Benutzer „Tablet“) dürfen die Seitenleiste öffnen
+panel_admin: false
 ports:
   8080/tcp: 8099
 ports_description:
