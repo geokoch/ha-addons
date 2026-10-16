@@ -79,6 +79,13 @@ Direkt über Port 8099 mit Token:
 
 Bei mehreren Personen `?personId=<id>` anhängen.
 
+Rezept-PDFs und die Rezeptsammlung werden nach dem Start und nach jeder Änderung an Rezepten,
+Favoriten oder Nährstoffzielen im Hintergrund vorab erzeugt und unter `/data/pdf-cache`
+gespeichert (nicht unter `/config/www`, das wäre ohne Anmeldung erreichbar). Solange sich nichts
+geändert hat, kommt das PDF sofort aus dem Cache. Tages- und Wochenberichte entstehen beim
+Aufruf. Der Cache ist vom HA-Backup ausgenommen und füllt sich nach einer Wiederherstellung
+von selbst.
+
 ## Chat mit Assist (MCP)
 
 Die App bietet MCP-Tools (Lebensmittel suchen, Gegessenes eintragen, Tagesbilanz …) für einen
