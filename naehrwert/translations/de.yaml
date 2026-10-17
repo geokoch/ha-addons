@@ -12,6 +12,14 @@ configuration:
     description: >-
       Home-Assistant-Benutzer (Benutzer- oder Anzeigename), die alle Personen sehen und Personen
       verwalten, z. B. Georg. Alle anderen sehen nur ihre eigene Person.
+  anthropic_api_key:
+    name: Anthropic-API-Schlüssel (Fotoerkennung)
+    description: >-
+      Schlüssel aus der Anthropic-Console für „Gericht fotografieren“ in Erfassen. Leer lassen,
+      um die Fotoerkennung auszuschalten. Je Foto fallen etwa zwei bis drei Cent an.
+  photo_model:
+    name: Modell für die Fotoerkennung
+    description: Claude-Modell, Standard claude-sonnet-5-5.
   heap_mb:
     name: Java-Heap (MB)
     description: Maximaler Java-Heap. 160 MB genügen für zwei Personen.

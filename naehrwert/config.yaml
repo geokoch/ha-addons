@@ -1,5 +1,5 @@
 name: Nährwert-Service
-version: "0.9.2"
+version: "0.10.0"
 slug: naehrwert
 description: Ernährungstagebuch, Rezepte und Tagesbilanzen auf Basis BLS 4.0 – mit Sensoren und Schnelleingabe in Home Assistant
 url: https://github.com/geokoch/ha-addons/tree/main/naehrwert
@@ -39,9 +39,14 @@ options:
   log_level: info
   heap_mb: 160
   admin_users: []
+  anthropic_api_key: ""
+  photo_model: claude-sonnet-5-5
 schema:
   api_token: password
   log_level: list(trace|debug|info|warn|error)
   heap_mb: int(64,1024)
   admin_users:
     - str
+  # Fotoerkennung „Gericht fotografieren“; leer = aus
+  anthropic_api_key: "password?"
+  photo_model: "str?"

@@ -33,6 +33,8 @@ Das Image liegt privat auf GitHub (`ghcr.io/geokoch/naehrwert`):
 | `api_token` | Bearer-Token für REST-API und MCP (Pflicht, ≥ 32 Zeichen) |
 | `log_level` | `trace` … `error`, Standard `info` |
 | `heap_mb` | Maximaler Java-Heap, Standard 160 MB |
+| `anthropic_api_key` | Schlüssel aus der [Anthropic-Console](https://console.anthropic.com/) für „Gericht fotografieren“; leer = Fotoerkennung aus |
+| `photo_model` | Claude-Modell für die Fotoerkennung, Standard `claude-sonnet-5-5` |
 
 Im Konfigurationsordner liegen nach dem ersten Start:
 
@@ -55,7 +57,9 @@ Im Konfigurationsordner liegen nach dem ersten Start:
 
 - **Heute:** kcal-Rest, Nährstoffe gegen Ziel, Salz-Ampel, nächste Mahlzeit, Mahlzeiten; frühere
   Tage korrigieren (Menge ändern, löschen)
-- **Erfassen:** Suche über Lebensmittel und Rezepte, Favoriten, zuletzt gegessen; Rückgängig
+- **Erfassen:** Suche über Lebensmittel und Rezepte, Favoriten, zuletzt gegessen; Rückgängig.
+  Mit `anthropic_api_key` zusätzlich **Kamera-Knopf** in der Suche: Gericht fotografieren →
+  Vorschlag prüfen → als Mahlzeit speichern (siehe „Gericht fotografieren“)
 - **Plan:** abends den nächsten Tag zusammenstellen (gleiche Suche wie Erfassen) und vorab gegen die
   Ziele prüfen: kcal, Nährstoffe, Salz-Ampel. „Plan von heute übernehmen“ für ähnliche Tage. Auf
   **Heute** stehen die geplanten Posten unter „Noch geplant“; „Gegessen“ trägt sie mit der
@@ -68,6 +72,26 @@ Im Konfigurationsordner liegen nach dem ersten Start:
   von Home Assistant mit dem Assistenten „Ernährung …“ – nur in der Seitenleiste/im Panel
 - **Wandpanel:** Ansicht fürs Küchen-Tablet (große Zahlen, echtes Schwarz, Favoriten mit einem
   Tipp) – unter Berichte → „Wandpanel-Modus auf diesem Gerät“ einschalten
+
+## Gericht fotografieren
+
+In **Erfassen** (und **Plan**) öffnet der Kamera-Knopf rechts in der Suche die Kamera bzw. die
+Fotoauswahl. Das Foto wird im Browser auf etwa 1600 px verkleinert und an Claude geschickt
+(Anthropic-API, `photo_model`). Claude erkennt die Komponenten und schätzt die Mengen; die
+**Nährwerte kommen immer aus dem BLS bzw. den eigenen Rezepten**, nie vom Modell. Ein zweiter, kurzer
+Aufruf ohne Bild wählt aus den BLS-Suchtreffern den passenden Eintrag (die BLS-Namen sind
+eigenwillig, z. B. „Broccoli“).
+
+- Komponenten mit sicherem Treffer sind vorausgewählt; unsichere Mengen tragen „geschätzt“.
+- Pro Komponente: anderen Treffer wählen, „Anderes Lebensmittel suchen“, Menge ±10 g, abhaken.
+- Speichern legt alle gewählten Komponenten als Einträge einer Mahlzeit an; „Rückgängig“ im Toast
+  nimmt alle zurück.
+- Das Foto wird nicht gespeichert – weder im Add-on noch in Home Assistant. Anthropic verarbeitet es
+  nach seinen API-Bedingungen.
+- Kosten: etwa zwei bis drei Cent je Foto mit Sonnet 5.5 ($2 / $10 je Mio. Tokens, Stand
+  2026-10-06; Bild ≈ 2.500 Tokens plus Antwort und Auswahl). Dauer 10–20 s.
+- Lehnt die Sicherheitsprüfung von Anthropic ein Foto fälschlich ab, beantwortet automatisch ein
+  Ersatzmodell die Anfrage (Server-Fallback, Beta).
 
 ## Personen und Benutzer
 
