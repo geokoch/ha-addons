@@ -79,8 +79,10 @@ In **Erfassen** (und **Plan**) öffnet der Kamera-Knopf rechts in der Suche die 
 Fotoauswahl. Das Foto wird im Browser auf etwa 1600 px verkleinert und an Claude geschickt
 (Anthropic-API, `photo_model`). Claude erkennt die Komponenten und schätzt die Mengen; die
 **Nährwerte kommen immer aus dem BLS bzw. den eigenen Rezepten**, nie vom Modell. Ein zweiter, kurzer
-Aufruf ohne Bild wählt aus den BLS-Suchtreffern den passenden Eintrag (die BLS-Namen sind
-eigenwillig, z. B. „Broccoli“).
+Aufruf ohne Bild (Claude Haiku 5.5) wählt aus den BLS-Suchtreffern den passenden Eintrag (die
+BLS-Namen sind eigenwillig, z. B. „Broccoli“). Heißt ein Treffer genau wie die Komponente, entfällt
+er. Das Protokoll nennt je Foto die Dauer beider Schritte („Fotoerkennung: Foto … ms, Zuordnung …
+ms“).
 
 - Komponenten mit sicherem Treffer sind vorausgewählt; unsichere Mengen tragen „geschätzt“.
 - Pro Komponente: anderen Treffer wählen, „Anderes Lebensmittel suchen“, Menge ±10 g, abhaken.
@@ -89,7 +91,7 @@ eigenwillig, z. B. „Broccoli“).
 - Das Foto wird nicht gespeichert – weder im Add-on noch in Home Assistant. Anthropic verarbeitet es
   nach seinen API-Bedingungen.
 - Kosten: etwa zwei bis drei Cent je Foto mit Sonnet 5.5 ($2 / $10 je Mio. Tokens, Stand
-  2026-10-06; Bild ≈ 2.500 Tokens plus Antwort und Auswahl). Dauer 10–20 s.
+  2026-10-06; Bild ≈ 2.500 Tokens plus Antwort und Auswahl). Dauer je nach Gericht 10–20 s.
 - Lehnt die Sicherheitsprüfung von Anthropic ein Foto fälschlich ab, beantwortet automatisch ein
   Ersatzmodell die Anfrage (Server-Fallback, Beta).
 
