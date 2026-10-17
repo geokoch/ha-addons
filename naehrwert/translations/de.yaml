@@ -7,6 +7,11 @@ configuration:
   log_level:
     name: Log-Level
     description: Ausführlichkeit der Protokollausgabe des Dienstes.
+  admin_users:
+    name: Admins der App
+    description: >-
+      Home-Assistant-Benutzer (Benutzer- oder Anzeigename), die alle Personen sehen und Personen
+      verwalten, z. B. Georg. Alle anderen sehen nur ihre eigene Person.
   heap_mb:
     name: Java-Heap (MB)
     description: Maximaler Java-Heap. 160 MB genügen für zwei Personen.

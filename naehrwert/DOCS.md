@@ -69,6 +69,17 @@ Im Konfigurationsordner liegen nach dem ersten Start:
 - **Wandpanel:** Ansicht fürs Küchen-Tablet (große Zahlen, echtes Schwarz, Favoriten mit einem
   Tipp) – unter Berichte → „Wandpanel-Modus auf diesem Gerät“ einschalten
 
+## Personen und Benutzer
+
+Beim ersten Öffnen über die Seitenleiste fragt die App „Wer bist du?“ und merkt sich die Antwort
+je Home-Assistant-Benutzer – danach öffnet sie auf jedem Gerät direkt die eigenen Daten.
+
+- **Person:** sieht nur ihre eigenen Daten (kein Umschalter).
+- **Haushalts-Gerät** (Küchen-Tablet): alle Personen.
+- **Admins:** in der Option **Admins der App** (`admin_users`) die HA-Benutzer eintragen,
+  z. B. `Georg`. Sie sehen alle Personen; die eigene Person wählen sie unter *Berichte → Konto*.
+- Falsch zugeordnet? *Berichte → Konto → Zuordnung ändern*.
+
 ## PDF-Reports
 
 Am einfachsten über **Berichte** in der Seitenleiste „Nährwert“. „Herunterladen“ speichert das
