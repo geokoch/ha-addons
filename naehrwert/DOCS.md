@@ -79,6 +79,10 @@ je Home-Assistant-Benutzer – danach öffnet sie auf jedem Gerät direkt die ei
 - **Admins:** in der Option **Admins der App** (`admin_users`) die HA-Benutzer eintragen,
   z. B. `Georg`. Sie sehen alle Personen; die eigene Person wählen sie unter *Berichte → Konto*.
 - Falsch zugeordnet? *Berichte → Konto → Zuordnung ändern*.
+- **Ziele ändern:** *Berichte → Konto → Meine Ziele*. Admins legen unter *Personen verwalten*
+  Personen an (alle Ziele Pflicht, keine geschätzten Vorgaben) und löschen Personen ohne Daten.
+- Die Rechte gelten auch in der API: Wer über die Seitenleiste angemeldet ist, bekommt fremde
+  Daten nicht (HTTP 403). Der API-Token (Port 8099) hat weiterhin Vollzugriff.
 
 ## PDF-Reports
 
