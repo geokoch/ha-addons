@@ -75,8 +75,9 @@ Im Konfigurationsordner liegen nach dem ersten Start:
 
 ## Gericht fotografieren
 
-In **Erfassen** (und **Plan**) öffnet der Kamera-Knopf rechts in der Suche die Kamera bzw. die
-Fotoauswahl. Das Foto wird im Browser auf etwa 1600 px verkleinert und an Claude geschickt
+Auf **Heute** und **Plan** sitzt ein runder Kamera-Knopf links neben „Erfassen“ bzw. „Planen“, in
+**Erfassen** rechts in der Suche. Ein Tipp öffnet am Handy direkt die Kamera (am PC die
+Dateiauswahl). Das Foto wird im Browser auf etwa 1600 px verkleinert und an Claude geschickt
 (Anthropic-API, `photo_model`). Claude erkennt die Komponenten und schätzt die Mengen; die
 **Nährwerte kommen immer aus dem BLS bzw. den eigenen Rezepten**, nie vom Modell. Ein zweiter, kurzer
 Aufruf ohne Bild (Claude Haiku 5.5) wählt aus den BLS-Suchtreffern den passenden Eintrag (die
