@@ -55,17 +55,21 @@ Im Konfigurationsordner liegen nach dem ersten Start:
 
 Über Ingress, ohne Token – die Anmeldung macht Home Assistant:
 
-- **Heute:** kcal-Rest, Nährstoffe gegen Ziel, Salz-Ampel, nächste Mahlzeit, Mahlzeiten; frühere
-  Tage korrigieren (Menge ändern, löschen)
+- **Heute:** kcal-Rest, nächste Mahlzeit, Mahlzeiten; frühere Tage korrigieren (Menge ändern,
+  löschen). Die Makro-Karte zeigt zugeklappt fünf kleine Ringe (Eiweiß, Kohlenhydrate, Fett,
+  Ballaststoffe, Salz) mit Prozent vom Maximum und Statussymbol; der Pfeil rechts klappt die Balken
+  mit Restmengen auf (Balkenende = Maximum, getönte Zone ab Minimum). Der Zustand wird je Gerät
+  gemerkt
 - **Erfassen:** Suche über Lebensmittel und Rezepte, Favoriten, zuletzt gegessen; Rückgängig.
   Mit `anthropic_api_key` zusätzlich **Kamera-Knopf** in der Suche: Gericht fotografieren →
-  Vorschlag prüfen → als Mahlzeit speichern (siehe „Gericht fotografieren“)
+  Vorschlag prüfen → als Mahlzeit speichern (siehe „Gericht fotografieren“). Nicht gefunden →
+  **„Neues Lebensmittel“** (siehe unten)
 - **Plan:** abends den nächsten Tag zusammenstellen (gleiche Suche wie Erfassen) und vorab gegen die
   Ziele prüfen: kcal, Nährstoffe, Salz-Ampel. „Plan von heute übernehmen“ für ähnliche Tage. Auf
   **Heute** stehen die geplanten Posten unter „Noch geplant“; „Gegessen“ trägt sie mit der
   aktuellen Uhrzeit ein (Menge vorher änderbar). Geplantes zählt nie in Tageswerte, Woche oder
   Berichte, solange es nicht gegessen ist
-- **Rezepte:** ansehen, anlegen, bearbeiten, als Favorit markieren, als PDF
+- **Rezepte:** ansehen, anlegen, bearbeiten, als Favorit markieren, als PDF, mit Foto
 - **Woche:** Heatmap der Tage, Mittelwerte, Tage im Ziel, Körperwerte
 - **Berichte:** alle PDFs zum Öffnen oder Herunterladen
 - **Assist-Knopf** (Sprechblase oben rechts und rund unten rechts auf Heute und Plan, im Wandpanel
@@ -77,8 +81,10 @@ Im Konfigurationsordner liegen nach dem ersten Start:
 ## Gericht fotografieren
 
 Auf **Heute** und **Plan** sitzt ein runder Kamera-Knopf links neben „Erfassen“ bzw. „Planen“, in
-**Erfassen** rechts in der Suche. Ein Tipp öffnet am Handy direkt die Kamera (am PC die
-Dateiauswahl). Das Foto wird im Browser auf etwa 1600 px verkleinert und an Claude geschickt
+**Erfassen** rechts in der Suche. Ein Tipp öffnet eine eigene Kamera-Vorschau mit Auslöser – auch
+in der HA Companion App für Android, die bei normalen Datei-Feldern nur die Galerie anbietet. Beim
+ersten Mal fragt das Handy nach der Kamera-Berechtigung. „Galerie“ unten links wählt ein vorhandenes
+Foto; ohne Kamera-Zugriff (abgelehnt, PC ohne Kamera) bleibt nur dieser Weg. Das Foto wird im Browser auf etwa 1600 px verkleinert und an Claude geschickt
 (Anthropic-API, `photo_model`). Claude erkennt die Komponenten und schätzt die Mengen; die
 **Nährwerte kommen immer aus dem BLS bzw. den eigenen Rezepten**, nie vom Modell. Ein zweiter, kurzer
 Aufruf ohne Bild (Claude Haiku 5.5) wählt aus den BLS-Suchtreffern den passenden Eintrag (die
@@ -96,6 +102,37 @@ ms“).
   2026-10-06; Bild ≈ 2.500 Tokens plus Antwort und Auswahl). Dauer je nach Gericht 10–20 s.
 - Lehnt die Sicherheitsprüfung von Anthropic ein Foto fälschlich ab, beantwortet automatisch ein
   Ersatzmodell die Anfrage (Server-Fallback, Beta).
+
+## Neues Lebensmittel
+
+Fehlt ein Lebensmittel im BLS (Markenprodukte, Fertiggerichte), legt man es in **Erfassen** an:
+„Neues Lebensmittel anlegen“ unter den Favoriten bzw. „„…“ neu anlegen“ in den Suchergebnissen
+(der Suchbegriff wird zum Namen).
+
+- **Werte vom Etikett:** Felder in der Reihenfolge der EU-Nährwerttabelle – Energie (kJ oder kcal,
+  das andere wird umgerechnet), Fett, davon gesättigte Fettsäuren, Kohlenhydrate, davon Zucker,
+  Ballaststoffe, Eiweiß, Salz; Komma als Dezimalzeichen. Umschalter **je 100 g / je 100 ml**, bei ml
+  optional die Dichte (Milch, Säfte ≈ 1,03). Ballaststoffe dürfen fehlen und zählen dann in Bilanzen
+  als „Wert fehlt“.
+- **Etikett fotografieren** (mit `anthropic_api_key`): Claude liest die Nährwerttabelle ab und füllt
+  die Felder (hervorgehoben, bitte mit dem Etikett vergleichen). Umgerechnet wird auf dem Server:
+  kJ → kcal, Natrium → Salz (× 2,5), Werte nur je Portion → je 100 g. Das Foto wird als
+  Zutaten-Foto des neuen Lebensmittels gespeichert.
+- **Prüfung beim Tippen:** „davon“-Werte nicht größer als der Oberwert und höchstens 100 g Nährstoffe
+  je 100 g (blockieren das Speichern); Energie passt nicht zu den Makros oder auffällig viel Salz
+  (nur Hinweis).
+- **Doppelte vermeiden:** Beim Namen erscheinen ähnliche vorhandene Lebensmittel zum Antippen.
+- **Gekauft bei:** optionaler Händler, mit Vorschlägen aus den bisher genutzten.
+- **Quelle** (vorbelegt „Etikett, MM/JJJJ“), Favorit. „Anlegen und Menge wählen“ speichert und
+  öffnet direkt die Mengenauswahl.
+
+## Fotos zu Lebensmitteln und Rezepten
+
+Eigene Lebensmittel haben zwei Fotos: **Packung** und **Zutaten & Nährwerte**; Rezepte ein
+**Hauptfoto**. Aufnehmen, ansehen und ersetzen im Mengen-Sheet bzw. in der Rezeptansicht;
+Vorschaubilder erscheinen in der Suche und der Rezeptliste. Der Browser verkleinert die Fotos
+(Bild 1200 px, Vorschau 320 px). Sie liegen als JPEG unter `/data/fotos` der App – nicht in Home
+Assistant und nicht bei Anthropic (nur das Etikett-Foto zum Ablesen geht einmalig an Claude).
 
 ## Personen und Benutzer
 
@@ -163,10 +200,12 @@ Gewicht, Blutdruck und Puls werden nicht in der App erfasst, sondern von der Waa
 
 ## Sicherung
 
-Die Datenbank liegt unter `/data` der App und ist in den Home-Assistant-Backups enthalten. Für ein
+Datenbank und Fotos (`/data/fotos`) liegen unter `/data` der App und sind in den
+Home-Assistant-Backups enthalten. Für ein
 konsistentes Backup hält Home Assistant die App kurz an (`backup: cold`). Zusätzlich erzeugt
 `POST /api/admin/backup` jederzeit eine Kopie per SQLite `VACUUM INTO` (die neuesten 14 werden
-behalten). Diese Kopien sind vom HA-Backup ausgenommen.
+behalten) und kopiert neue Fotos nach `backup/fotos` (ersetzte bleiben dort erhalten). Diese
+Kopien sind vom HA-Backup ausgenommen.
 
 ## Daten
 
