@@ -69,7 +69,8 @@ Im Konfigurationsordner liegen nach dem ersten Start:
   **Heute** stehen die geplanten Posten unter „Noch geplant“; „Gegessen“ trägt sie mit der
   aktuellen Uhrzeit ein (Menge vorher änderbar). Geplantes zählt nie in Tageswerte, Woche oder
   Berichte, solange es nicht gegessen ist
-- **Rezepte:** ansehen, anlegen, bearbeiten, als Favorit markieren, als PDF, mit Foto
+- **Rezepte:** ansehen, anlegen, bearbeiten, als Favorit markieren, als PDF, mit Foto. Der
+  Umschalter oben wechselt zu **Lebensmittel** (siehe „Eigene Lebensmittel verwalten“)
 - **Woche:** Heatmap der Tage, Mittelwerte, Tage im Ziel, Körperwerte
 - **Berichte:** alle PDFs zum Öffnen oder Herunterladen
 - **Assist-Knopf** (Sprechblase oben rechts und rund unten rechts auf Heute und Plan, im Wandpanel
@@ -125,6 +126,24 @@ Fehlt ein Lebensmittel im BLS (Markenprodukte, Fertiggerichte), legt man es in *
 - **Gekauft bei:** optionaler Händler, mit Vorschlägen aus den bisher genutzten.
 - **Quelle** (vorbelegt „Etikett, MM/JJJJ“), Favorit. „Anlegen und Menge wählen“ speichert und
   öffnet direkt die Mengenauswahl.
+
+## Eigene Lebensmittel verwalten
+
+Tab **Rezepte** → Umschalter **Lebensmittel**: alle selbst angelegten Lebensmittel mit Packungsfoto,
+Händler und kcal, Favoriten zuerst.
+
+- **Suchen und filtern:** Suchfeld (Name oder Händler), Filter „Favoriten“ und je Händler. Ab drei
+  Zeichen erscheinen darunter auch Treffer aus der Lebensmitteldatenbank (BLS).
+- **+** oben legt ein neues Lebensmittel an (dasselbe Formular wie in Erfassen).
+- **Antippen** zeigt die Nährwerte je 100 g, die Fotos (aufnehmen, ersetzen, entfernen) und die
+  Quelle. Dort: **Eintragen** (öffnet direkt die Mengenauswahl), Stern für Favorit,
+  **Bearbeiten** und **Ausblenden**.
+- **Bearbeiten** korrigiert Name, Händler, Werte und Quelle. Frühere Einträge behalten ihre
+  gespeicherten Werte; Rezepte mit diesem Lebensmittel rechnen mit den neuen.
+- **Ausblenden** statt Löschen: das Lebensmittel verschwindet aus Suche, Favoriten und
+  Händlervorschlägen, frühere Einträge und Rezepte behalten es. „Rückgängig“ im Hinweis oder unten
+  „Ausgeblendete anzeigen“ → **Wieder einblenden**.
+- Lebensmittel aus dem BLS lassen sich nur ansehen, eintragen und als Favorit markieren.
 
 ## Fotos zu Lebensmitteln und Rezepten
 
