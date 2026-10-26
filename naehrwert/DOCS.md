@@ -110,15 +110,23 @@ Fehlt ein Lebensmittel im BLS (Markenprodukte, Fertiggerichte), legt man es in *
 „Neues Lebensmittel anlegen“ unter den Favoriten bzw. „„…“ neu anlegen“ in den Suchergebnissen
 (der Suchbegriff wird zum Namen).
 
+- **Zwei Fotos, zwei Schritte** (mit `anthropic_api_key`; die Fotofelder oben sind zugleich die
+  Kamera-Knöpfe, Reihenfolge egal, beides optional):
+  1. **Vorderseite:** wird das Vorschaubild; Claude liest **Produktname und Marke** ab (ohne
+     Werbung wie „Neu“) und füllt die Felder – danach zeigt die Doppelt-Prüfung gleich vorhandene
+     Lebensmittel.
+  2. **Zutaten & Nährwerte:** Claude liest die **Nährwerttabelle** ab und füllt die Felder
+     (hervorgehoben, bitte mit dem Etikett vergleichen). Umgerechnet wird auf dem Server: kJ →
+     kcal, Natrium → Salz (× 2,5), Werte nur je Portion → je 100 g. Steht dort eine genauere
+     Bezeichnung (z. B. „Skyr, isländische Art, natur“), erscheint sie als Vorschlag zum Übernehmen.
+
+  Ein selbst getippter Name wird nie überschrieben; Fotos von vorne liefern dann nur einen
+  Vorschlag. Ohne Fotoerkennung werden die Fotos nur gespeichert.
 - **Werte vom Etikett:** Felder in der Reihenfolge der EU-Nährwerttabelle – Energie (kJ oder kcal,
   das andere wird umgerechnet), Fett, davon gesättigte Fettsäuren, Kohlenhydrate, davon Zucker,
   Ballaststoffe, Eiweiß, Salz; Komma als Dezimalzeichen. Umschalter **je 100 g / je 100 ml**, bei ml
   optional die Dichte (Milch, Säfte ≈ 1,03). Ballaststoffe dürfen fehlen und zählen dann in Bilanzen
   als „Wert fehlt“.
-- **Etikett fotografieren** (mit `anthropic_api_key`): Claude liest die Nährwerttabelle ab und füllt
-  die Felder (hervorgehoben, bitte mit dem Etikett vergleichen). Umgerechnet wird auf dem Server:
-  kJ → kcal, Natrium → Salz (× 2,5), Werte nur je Portion → je 100 g. Das Foto wird als
-  Zutaten-Foto des neuen Lebensmittels gespeichert.
 - **Prüfung beim Tippen:** „davon“-Werte nicht größer als der Oberwert und höchstens 100 g Nährstoffe
   je 100 g (blockieren das Speichern); Energie passt nicht zu den Makros oder auffällig viel Salz
   (nur Hinweis).
@@ -147,7 +155,7 @@ Händler und kcal, Favoriten zuerst.
 
 ## Fotos zu Lebensmitteln und Rezepten
 
-Eigene Lebensmittel haben zwei Fotos: **Packung** und **Zutaten & Nährwerte**; Rezepte ein
+Eigene Lebensmittel haben zwei Fotos: **Vorderseite** und **Zutaten & Nährwerte**; Rezepte ein
 **Hauptfoto**. Aufnehmen, ansehen und ersetzen im Mengen-Sheet bzw. in der Rezeptansicht;
 Vorschaubilder erscheinen in der Suche und der Rezeptliste. Der Browser verkleinert die Fotos
 (Bild 1200 px, Vorschau 320 px). Sie liegen als JPEG unter `/data/fotos` der App – nicht in Home
