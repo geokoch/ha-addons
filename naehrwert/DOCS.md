@@ -59,7 +59,7 @@ Im Konfigurationsordner liegen nach dem ersten Start:
   löschen). Die Makro-Karte zeigt zugeklappt fünf kleine Ringe (Eiweiß, Kohlenhydrate, Fett,
   Ballaststoffe, Salz) mit Prozent vom Maximum und Statussymbol; der Pfeil rechts klappt die Balken
   mit Restmengen auf (Balkenende = Maximum, getönte Zone ab Minimum). Der Zustand wird je Gerät
-  gemerkt
+  gemerkt. Darüber die heute fälligen **Supplements** zum Abhaken (siehe „Supplements“)
 - **Erfassen:** Suche über Lebensmittel und Rezepte, Favoriten, zuletzt gegessen; Rückgängig.
   Mit `anthropic_api_key` zusätzlich **Kamera-Knopf** in der Suche: Gericht fotografieren →
   Vorschlag prüfen → als Mahlzeit speichern (siehe „Gericht fotografieren“). Nicht gefunden →
@@ -70,7 +70,8 @@ Im Konfigurationsordner liegen nach dem ersten Start:
   aktuellen Uhrzeit ein (Menge vorher änderbar). Geplantes zählt nie in Tageswerte, Woche oder
   Berichte, solange es nicht gegessen ist
 - **Rezepte:** ansehen, anlegen, bearbeiten, als Favorit markieren, als PDF, mit Foto. Der
-  Umschalter oben wechselt zu **Lebensmittel** (siehe „Eigene Lebensmittel verwalten“)
+  Umschalter oben wechselt zu **Lebensmittel** (siehe „Eigene Lebensmittel verwalten“) und
+  **Supplements**
 - **Woche:** Heatmap der Tage, Mittelwerte, Tage im Ziel, Körperwerte
 - **Berichte:** alle PDFs zum Öffnen oder Herunterladen
 - **Assist-Knopf** (Sprechblase oben rechts und rund unten rechts auf Heute und Plan, im Wandpanel
@@ -152,6 +153,24 @@ Händler und kcal, Favoriten zuerst.
   Händlervorschlägen, frühere Einträge und Rezepte behalten es. „Rückgängig“ im Hinweis oder unten
   „Ausgeblendete anzeigen“ → **Wieder einblenden**.
 - Lebensmittel aus dem BLS lassen sich nur ansehen, eintragen und als Favorit markieren.
+
+## Supplements
+
+Vitamine, Mineralstoffe, Omega-3 oder Proteinpulver: Tab **Rezepte** → Umschalter **Supplements**.
+
+- **Anlegen** (+): Name, Hersteller, Einheit (Kapsel, Tablette, Tropfen, Messlöffel, Gramm),
+  Wirkstoffe **je Einheit** aus einer festen Liste (µg bzw. mg; Vitamin D auch in IE, 40 IE = 1 µg),
+  übliche Dosis. Hat das Etikett Energie (Pulver, Riegel), „Enthält Energie“ ankreuzen und kcal und
+  Makros je Einheit eintragen – die zählen dann in die Tagesbilanz.
+- **Einnahmeplan** je Person: Morgens, Mittags, Abends mit eigener Uhrzeit; je Posten Dosis und Tage
+  (täglich, bestimmte Wochentage oder jeden n-ten Tag). Unten die Summe je Tag laut Plan.
+- **Heute** zeigt, was laut Plan heute fällig ist: ein Tipp auf eine Zeile bucht sie (nochmal
+  tippen = wieder offen), „Alle genommen“ bucht den ganzen Zeitpunkt, danach „Rückgängig“. Der nächste
+  Zeitpunkt ist blau wie die nächste Mahlzeit. Offenes bleibt einfach offen.
+- Außer Plan: in der Supplement-Ansicht „Jetzt genommen“.
+- Supplements zählen **nicht als Mahlzeit** (keine Verschiebung der „nächsten Mahlzeit“).
+  Wirkstoffe erscheinen nur als Summe (Heute, Woche, Tagesbericht), ohne Zielwerte.
+- Ausblenden statt Löschen wie bei Lebensmitteln; frühere Einnahmen behalten ihre Werte.
 
 ## Fotos zu Lebensmitteln und Rezepten
 
