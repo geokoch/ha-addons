@@ -171,6 +171,12 @@ Vitamine, Mineralstoffe, Omega-3 oder Proteinpulver: Tab **Rezepte** → Umschal
 - Supplements zählen **nicht als Mahlzeit** (keine Verschiebung der „nächsten Mahlzeit“).
   Wirkstoffe erscheinen nur als Summe (Heute, Woche, Tagesbericht), ohne Zielwerte.
 - Ausblenden statt Löschen wie bei Lebensmitteln; frühere Einnahmen behalten ihre Werte.
+- **Home Assistant**: am Gerät „Ernährung &lt;Name&gt;“ die Sensoren `sensor.<person>_supplemente_offen`
+  (Anzahl offen, Attribute mit Text je Zeitpunkt und Wirkstoffsummen) und
+  `sensor.<person>_supplemente_naechste` (Uhrzeit des nächsten offenen Zeitpunkts) sowie die Buttons
+  `button.<person>_supplemente_morgens` / `_mittags` / `_abends` („… genommen“). Per MQTT:
+  `{"action":"take_supplements","slot":"MORGENS"}` auf `naehrwert/<person>/cmd`. Eine fertige
+  Erinnerung mit Knopf „Genommen“ steht im Repository unter `ha/automation-supplemente.yaml`.
 
 ## Fotos zu Lebensmitteln und Rezepten
 
